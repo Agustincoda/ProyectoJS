@@ -1,8 +1,8 @@
-function aproboAlumno(nombre, total) {
-    if (total >= 6) {
-        alert(nombre + " pasó de año!");
+function aproboAlumno(nombre, nota1,nota2,nota3) {
+    if (aproboMateria(nota1)&&aproboMateria(nota2)&&aproboMateria(nota3)){
+        alert(nombre + " paso de grado!");
     } else {
-        alert(nombre + " tiene que repetir el año");
+        alert(nombre + " tiene que repetir el grado");
     }
 }
 
@@ -14,6 +14,15 @@ function recuperar(nota, nombreAlumno){
         }else{
             return nota;
         }
+}
+
+function aproboMateria(nota){
+    if (nota>=6){
+        return true;
+    }else{
+        return false;
+    }
+
 }
 
 let cantidadAlumnos=parseInt(prompt("ingrese el numero de alumnos"));;
@@ -32,8 +41,8 @@ for(let i=0;i<cantidadAlumnos;i++){
     if(notaHistoria<6){
         notaHistoria= recuperar(notaHistoria, nombreAlumno);
     }
-    let total= notaMatematicas + notaGeografia + notaHistoria; 
+    
 
-    aproboAlumno(nombreAlumno,total/3);
+    aproboAlumno(nombreAlumno,notaGeografia,notaHistoria,notaMatematicas);
 
 }
