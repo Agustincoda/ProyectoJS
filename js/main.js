@@ -1,3 +1,20 @@
+class alumno {
+    constructor(nombre,nota1,nota2,nota3){
+        this.nombre=nombre;
+        this.notas=[nota1,nota2,nota3];
+    }
+    recuperar(nota){
+    let notaRecuperatorio= parseInt(prompt("Que nota obtuvo " + nombre +" en el recuperatorio?"));
+    if(notaRecuperatorio>nota){
+        nota = notaRecuperatorio;
+        return nota;
+    }else{
+            return nota;
+        }
+        notas.push(nota)
+    }
+}
+
 function aproboAlumno(nombre, nota1,nota2,nota3) {
     if (aproboMateria(nota1)&&aproboMateria(nota2)&&aproboMateria(nota3)){
         alert(nombre + " paso de grado!");
@@ -6,15 +23,6 @@ function aproboAlumno(nombre, nota1,nota2,nota3) {
     }
 }
 
-function recuperar(nota, nombreAlumno){
-    let notaRecuperatorio= parseInt(prompt("Que nota obtuvo " + nombreAlumno +" en el recuperatorio?"));
-    if(notaRecuperatorio>nota){
-         nota = notaRecuperatorio;
-         return nota;
-        }else{
-            return nota;
-        }
-}
 
 function aproboMateria(nota){
     if (nota>=6){
