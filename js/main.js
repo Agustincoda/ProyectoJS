@@ -1,56 +1,52 @@
 class alumno {
-    constructor(nombre,nota1,nota2,nota3){
+    constructor(nombre,notasMatematicas,notasGeografia,notasHistoria){
         this.nombre=nombre;
-        this.notas=[nota1,nota2,nota3];
+        this.notas={};
+        this.notas.matematicas=notasMatematicas;
+        this.notas.geografia=notasGeografia;
+        this.notas.historia=notasHistoria;
     }
-    recuperar(nota){
-    let notaRecuperatorio= parseInt(prompt("Que nota obtuvo " + nombre +" en el recuperatorio?"));
-    if(notaRecuperatorio>nota){
-        nota = notaRecuperatorio;
-        return nota;
-    }else{
-            return nota;
+    aproboMateria(notas){
+        this.notas.splice(0,2);
+        if(this.notas>=6){
+            return true;
+        }else{
+            return false;
         }
-        notas.push(nota)
+    }
+
+    aproboanio(){
+        if(aproboMateria(this.notas.matematicas)&&aproboMateria(this.notas.geografia)&&aproboMateria(this.notas.historia)){
+            alert(this.nombre + " aprobó el año!");
+        }else{
+            alert(this.nombre + " va a tener que repetir, lo lamento");
+        }
     }
 }
 
-function aproboAlumno(nombre, nota1,nota2,nota3) {
-    if (aproboMateria(nota1)&&aproboMateria(nota2)&&aproboMateria(nota3)){
-        alert(nombre + " paso de grado!");
-    } else {
-        alert(nombre + " tiene que repetir el grado");
-    }
-}
-
-
-function aproboMateria(nota){
-    if (nota>=6){
-        return true;
-    }else{
-        return false;
-    }
-
-}
 
 let cantidadAlumnos=parseInt(prompt("ingrese el numero de alumnos"));;
-
+let notaMatematicas=[];
+let notaGeografia=[];
+let notaHistoria=[];
 for(let i=0;i<cantidadAlumnos;i++){
     let nombreAlumno = prompt("Ingresa el nombre del alumno");
-    let notaMatematicas = parseInt(prompt("Cual fue su nota en matematicas?"));
-    if(notaMatematicas<6){
-        notaMatematicas= recuperar(notaMatematicas, nombreAlumno);
-    }
-    let notaGeografia = parseInt(prompt("Cual fue su nota en geografia?"));
-    if(notaGeografia<6){
-        notaGeografia= recuperar(notaGeografia, nombreAlumno);
-    }
-    let notaHistoria = parseInt(prompt("Cual fue su nota en historia?"));    
-    if(notaHistoria<6){
-        notaHistoria= recuperar(notaHistoria, nombreAlumno);
-    }
     
+    do{
+        let cargar=parseInt(prompt("ingresa las notas de matematicas"));
+        notaMatematicas.push(cargar);
+    }while(notaMatematicas.length!=3);
+    do{
+        let cargar=parseInt(prompt("ingresa las notas de geografia"));
+        notaGeografia.push(cargar);
+    }while(notaGeografia.length!=3);
+    do{
+        let cargar=parseInt(prompt("ingresa las notas de historia"));
+        notaHistoria.push(cargar);
+    }while(notaHistoria.length!=3);
 
-    aproboAlumno(nombreAlumno,notaGeografia,notaHistoria,notaMatematicas);
+    
+const nuevoAlumno= new alumno (nombreAlumno,notaMatematicas,notaGeografia,notaHistoria);
+nuevoAlumno.aproboanio();
 
 }
