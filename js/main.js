@@ -6,20 +6,21 @@ class alumno {
         this.notas.geografia=notasGeografia;
         this.notas.historia=notasHistoria;
     }
-    aproboMateria(notas){
-        this.notas.splice(0,2);
-        if(this.notas>=6){
+    aproboMateria(materia) {
+        const ultimaNotaCargada = this.notas.materia[ (this.notas.materia.length) -1 ];
+        if (ultimaNotaCargada>6){
             return true;
         }else{
             return false;
         }
     }
-
     aproboanio(){
-        if(aproboMateria(this.notas.matematicas)&&aproboMateria(this.notas.geografia)&&aproboMateria(this.notas.historia)){
+        if(this.aproboMateria(this.notas.matematicas)&&this.aproboMateria(this.notas.geografia)&&this.aproboMateria(this.notas.historia)){
             alert(this.nombre + " aprobó el año!");
+            console.log (this.nombre + " aprobó el año!");
         }else{
             alert(this.nombre + " va a tener que repetir, lo lamento");
+            console.log(this.nombre + " va a tener que repetir, lo lamento");
         }
     }
 }
@@ -48,5 +49,6 @@ for(let i=0;i<cantidadAlumnos;i++){
     
 const nuevoAlumno= new alumno (nombreAlumno,notaMatematicas,notaGeografia,notaHistoria);
 nuevoAlumno.aproboanio();
+
 
 }
