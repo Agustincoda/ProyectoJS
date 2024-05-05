@@ -30,15 +30,7 @@ class alumno {
             alert(this.nombre + " va a tener que repetir, lo lamento.");
         }
     }
-    notasPromocion(materia){
-        const notasAltas=this.notas[materia].filter((notas)=>notas>=8);
-        if(notasAltas.length==0){
-            console.log("Ninguna nota alta?\nHay que esforzarse para la proxima.");
-        }else{
-            console.log("las notas para promocion de " + materia + " fueron " + notasAltas);
-        }
-    }
-
+    
 }
 
 
@@ -71,6 +63,5 @@ for(let i=0;i<cantidadAlumnos;i++){
     
 const nuevoAlumno= new alumno (nombreAlumno,notaMatematicas,notaGeografia,notaHistoria);
 nuevoAlumno.aproboAnio();
-nuevoAlumno.notasPromocion("matematicas");
 
 }
