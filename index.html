@@ -9,7 +9,23 @@
     <h1>Ahora a cargar las notas</h1>
     <h2>Recuerden las reglas</h2>
     <p>Los alumnos tienen que tener un promedio mayor a 6 para aprobar en las materias que cursen.</p>
+    
+    <form id="formAlumnos">
+        <ul>
+            <li><input type="text" placeholder="Escribi el nombre del alumno" id="inputNom"></li>
+            <li><input type="number" placeholder="Cual es su nota en matematicas?" id="NotaMat"></li>
+            <li><input type="number" placeholder="Cual es su nota en geografia?" id="NotaGeo"></li>
+            <li><input type="number" placeholder="Cual es su nota en historia?" id="NotaHis"></li>
+            <div class="buttons">   
+            <li><input type="button" value="Cargar" id="botCarga"></li>
+            <li><input type="button" value="Mostrar" id="botMostrar"></li>
+            <li><input type="button" value="Eliminar Lista" id="botElimLista"></li>
+            </div>
+        </ul>   
+    </form>
+        
     <img src="../practica javascript/Resources/Images/estudianteDesaprobado.jpg" id="alumnaTriste">
+</div>
     <script src="js/main.js"></script>
 </body>
 </html>

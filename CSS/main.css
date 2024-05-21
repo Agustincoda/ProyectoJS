@@ -34,4 +34,16 @@ p {
   height: 250px;
 }
 
+.botones{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.textoBoton{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 /*# sourceMappingURL=main.css.map */
