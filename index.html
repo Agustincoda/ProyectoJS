@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/main.css">
-    <title>This is JS!</title>
+    <title>Gestión de Alumnos</title>
 </head>
 <body>
     <h1>Ahora a cargar las notas</h1>
@@ -12,20 +12,22 @@
     
     <form id="formAlumnos">
         <ul>
-            <li><input type="text" placeholder="Escribi el nombre del alumno" id="inputNom"></li>
-            <li><input type="number" placeholder="Cual es su nota en matematicas?" id="NotaMat"></li>
-            <li><input type="number" placeholder="Cual es su nota en geografia?" id="NotaGeo"></li>
-            <li><input type="number" placeholder="Cual es su nota en historia?" id="NotaHis"></li>
+            <li><input type="text" placeholder="Escribí el nombre del alumno" id="inputNom"></li>
+            <li><input type="number" placeholder="¿Cuál es su nota en matemáticas?" id="NotaMat"></li>
+            <li><input type="number" placeholder="¿Cuál es su nota en geografía?" id="NotaGeo"></li>
+            <li><input type="number" placeholder="¿Cuál es su nota en historia?" id="NotaHis"></li>
             <div class="buttons">   
-            <li><input type="button" value="Cargar" id="botCarga"></li>
-            <li><input type="button" value="Mostrar" id="botMostrar"></li>
-            <li><input type="button" value="Eliminar Lista" id="botElimLista"></li>
+                <li><input type="submit" value="Cargar" id="botCarga"></li>
             </div>
         </ul>   
     </form>
         
-    <img src="../practica javascript/Resources/Images/estudianteDesaprobado.jpg" id="alumnaTriste">
-</div>
+    <div id="listaAlumnos"></div>
+    <button id="botMostrar">Mostrar Alumnos</button>
+    <button id="botElimLista">Eliminar Lista</button>
+    <button id="botAprob">Verificar Aprobados</button>
+    <div id="resultadoRevision"></div>
+
     <script src="js/main.js"></script>
 </body>
 </html>

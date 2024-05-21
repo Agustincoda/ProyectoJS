@@ -27,114 +27,148 @@
 
 //     }
 // }
+    class Alumno {
+        constructor(nombre, notasMatematicas, notasGeografia, notasHistoria) {
+            this.nombre = nombre;
+            this.notas = {
+                matematicas: notasMatematicas,
+                geografia: notasGeografia,
+                historia: notasHistoria
+            };
+        }
 
+        promedioNotas(materia) {
+            const sumaNotas = this.notas[materia].reduce((acc, nota) => acc + nota, 0);
+            const promedio = sumaNotas / this.notas[materia].length;
+            return promedio;
+        }
 
+        aproboMateria(materia) {
+            const promedio = this.promedioNotas(materia);
+            return promedio >= 6;
+        }
 
-class Alumno {
-    constructor(nombre, notasMatematicas, notasGeografia, notasHistoria) {
-        this.nombre = nombre;
-        this.notas = {
-            matematicas: notasMatematicas,
-            geografia: notasGeografia,
-            historia: notasHistoria
-        };
-    }
-
-    promedioNotas(materia) {
-        let sumaNotas = 0;
-        this.notas[materia].forEach(nota => {
-            sumaNotas += nota;
-        });
-        const promedio = sumaNotas / this.notas[materia].length;
-        return promedio;
-    }
-
-    aproboMateria(materia) {
-        const promedio = this.promedioNotas(materia);
-        return promedio >= 6;
-    }
-
-    aproboAnio() {
-        if (this.aproboMateria("matematicas") && this.aproboMateria("geografia") && esta.aproboMateria("historia")) {
-            alert(this.nombre + " aprobó el año!");
-        } else {
-            alert(this.nombre + " va a tener que repetir, lo lamento.");
+        aproboAnio() {
+            return this.aproboMateria("matematicas") && this.aproboMateria("geografia") && this.aproboMateria("historia");
         }
     }
-}
 
-const alumnos = [];
+    let alumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos")) || [];
 
-// console.log("Datos de los alumnos:");
-// alumnos.forEach(alumno => {
-// console.log(`Nombre: ${alumno.nombre}`);
-// console.log(`Notas de Matemáticas: ${alumno.notas.matematicas}`);
-// console.log(`Notas de Geografía: ${alumno.notas.geografia}`);
-//  console.log(`Notas de Historia: ${alumno.notas.historia}`);
-//  });
-
-function guardarEnMemoria(alumnos) {
-    const alumnosJSON = JSON.stringify(alumnos);
-    sessionStorage.setItem("arrayAlumnos", alumnosJSON);
-}
-
-function mostrarDeMemoria() {
-    const listaAlumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos"));    
-    
-    alumnos.forEach(alumno=>{
-    const div= document.createElement("div");
-    div.className= "alumno";
-
-    const nombre= document.createElement("h2");
-    nombre.innerText= `Nombre: ${alumno.nombre}`;
-    nombre.className= "nombreAlumno";
-
-    const notaMatematicas= document.createElement("p");
-    notaMatematicas.innerText= `Nombre: ${alumno.notas.matematicas}`;
-
-    const notaGeografia= document.createElement("p");
-    notaGeografia.innerText= `Nota de Geografia: ${alumno.notas.geografia}`;
-
-    const notaHistoria= document.createElement("p");
-    notaHistoria.innerText= `Nombre: ${alumno.notas.historia}`;
-    })
-
-}
-
-function eliminarInputs(){
-    document.getElementById("inputNom").value = "";
-    document.getElementById("NotaMat").value = "";
-    document.getElementById("NotaGeo").value = "";
-    document.getElementById("NotaHis").value = "";
-}
-
-function quitarLista(){
-    const listaAlumnos=sessionStorage.getItem("arrayAlumnos")
-    if(listaAlumnos!=null){
-    sessionStorage.clear("arrayAlumnos");
-        alert("Se borro la lista! Ya podes ingresar un nuevo lote de alumnos");
-        console.log("Lista vacia");
-    }else{
-        alert("No hay nada cargado, revisa que hayas ingresado un alumno al menos");
+    function guardarEnMemoria(alumnos) {
+        const alumnosJSON = JSON.stringify(alumnos);
+        sessionStorage.setItem("arrayAlumnos", alumnosJSON);
     }
-}
-const botonCargarAlumnos = document.getElementById("botCarga");
-const botonMostrarAlumnos = document.getElementById("botMostrar");
-const botonEliminarLista=document.getElementById("botElimLista")
 
-botonCargarAlumnos.addEventListener("click", () => {
+    function mostrarDeMemoria() {
+        const listaAlumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos"));
+        if (listaAlumnos) {
+            const contenedor = document.getElementById("listaAlumnos");
+            contenedor.innerHTML = ""; // Limpiar contenido previo
+            listaAlumnos.forEach(alumno => {
+                const div = document.createElement("div");
+                div.className = "alumno";
 
-    const nombreAlumno = document.getElementById("inputNom").value;
-    const notaMatematicas = parseInt(document.getElementById("NotaMat").value,10);
-    const notaGeografia = parseInt(document.getElementById("NotaGeo").value,10);
-    const notaHistoria = parseInt(document.getElementById("NotaHis").value,10);
+                const nombre = document.createElement("h2");
+                nombre.innerText = `Nombre: ${alumno.nombre}`;
+                nombre.className = "nombreAlumno";
 
-    const nuevoAlumno = new Alumno(nombreAlumno, notaMatematicas, notaGeografia, notaHistoria);
-    alumnos.push(nuevoAlumno);
-    guardarEnMemoria(alumnos);
-    eliminarInputs();
-});
+                const notaMatematicas = document.createElement("p");
+                notaMatematicas.innerText = `Nota de Matemáticas: ${alumno.notas.matematicas.join(", ")}`;
 
-botonMostrarAlumnos.addEventListener("click",mostrarDeMemoria);
+                const notaGeografia = document.createElement("p");
+                notaGeografia.innerText = `Nota de Geografía: ${alumno.notas.geografia.join(", ")}`;
 
-botonEliminarLista.addEventListener("click",quitarLista)
+                const notaHistoria = document.createElement("p");
+                notaHistoria.innerText = `Nota de Historia: ${alumno.notas.historia.join(", ")}`;
+
+                div.appendChild(nombre);
+                div.appendChild(notaMatematicas);
+                div.appendChild(notaGeografia);
+                div.appendChild(notaHistoria);
+
+                contenedor.appendChild(div);
+            });
+        } else {
+            console.log("No hay alumnos en memoria.");
+        }
+    }
+
+    function eliminarInputs() {
+        document.getElementById("inputNom").value = "";
+        document.getElementById("NotaMat").value = "";
+        document.getElementById("NotaGeo").value = "";
+        document.getElementById("NotaHis").value = "";
+    }
+
+    function quitarLista() {
+        const listaAlumnos = sessionStorage.getItem("arrayAlumnos");
+        if (listaAlumnos) {
+            sessionStorage.removeItem("arrayAlumnos");
+            alert("Se borró la lista! Ya puedes ingresar un nuevo lote de alumnos");
+            console.log("Lista vacía");
+            const contenedor = document.getElementById("listaAlumnos");
+            contenedor.innerHTML = "";
+            alumnos = []; 
+        } else {
+            alert("No hay nada cargado, revisa que hayas ingresado un alumno al menos");
+        }
+        const resultado = document.getElementById("resultadoRevision");
+        if (resultado) {
+            resultado.innerHTML = "";
+        }
+    }
+
+    function mostrarResultado() {
+        const listaAlumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos"));
+        if (listaAlumnos) {
+            const contenedor = document.getElementById("resultadoRevision");
+            contenedor.innerHTML = ""; 
+            const todosAprobados = listaAlumnos.every(alumno => {
+                const todosAlumnos = new Alumno(alumno.nombre, alumno.notas.matematicas, alumno.notas.geografia, alumno.notas.historia);
+                return todosAlumnos.aproboAnio();
+            });
+
+            if (todosAprobados) {
+                const resultadoAprobado = document.createElement("p");
+                resultadoAprobado.innerText = "¡Todos los alumnos aprobaron!";
+                contenedor.appendChild(resultadoAprobado);
+            } else {
+                const resultadoDesaprobado = document.createElement("p");
+                resultadoDesaprobado.innerText = "Lamentablemente uno o más alumnos desaprobaron";
+                contenedor.appendChild(resultadoDesaprobado);
+            }
+
+            if(todosAprobados==null){
+                const noHayResultado = document.createElement("p");
+                noHayResultado.innerText = "No hay resultados para evaluar.";
+                contenedor.appendChild(noHayResultado);
+            }
+        }
+    }
+
+    const botonCargarAlumnos = document.getElementById("botCarga");
+    const botonMostrarAlumnos = document.getElementById("botMostrar");
+    const botonEliminarLista = document.getElementById("botElimLista");
+    const botonRevisarNotas = document.getElementById("botAprob");
+
+    botonCargarAlumnos.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const nombreAlumno = document.getElementById("inputNom").value;
+        const notaMatematicas = [parseInt(document.getElementById("NotaMat").value)];
+        const notaGeografia = [parseInt(document.getElementById("NotaGeo").value)];
+        const notaHistoria = [parseInt(document.getElementById("NotaHis").value)];
+
+        const nuevoAlumno = new Alumno(nombreAlumno, notaMatematicas, notaGeografia, notaHistoria);
+        alumnos.push(nuevoAlumno);
+        guardarEnMemoria(alumnos);
+        eliminarInputs();
+    });
+
+    botonMostrarAlumnos.addEventListener("click", mostrarDeMemoria);
+    botonEliminarLista.addEventListener("click", quitarLista);
+    botonRevisarNotas.addEventListener("click", mostrarResultado);
+
+
+
