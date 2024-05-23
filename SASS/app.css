@@ -1,0 +1,114 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  background-color: black;
+  padding: 5px;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#formYBotones {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+
+#formAlumnos {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+#formAlumnos ul {
+  list-style: none;
+}
+#formAlumnos li {
+  margin-bottom: 10px;
+}
+#formAlumnos input[type=text], #formAlumnos [type=number] {
+  width: 315px;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  height: 50px;
+  width: 150px;
+}
+
+#sistemaAlumnos {
+  display: flex;
+  flex-direction: row;
+  padding: 30px;
+  justify-content: space-between;
+}
+
+#mostrarResultado {
+  flex-direction: column;
+  padding: 30px;
+  background-color: lightblue;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 20px;
+}
+#mostrarResultado p {
+  color: black;
+}
+
+#resultadoRevision {
+  padding-top: 15px;
+}
+
+.nombreAlumno {
+  color: red;
+  padding-bottom: 5px;
+}
+
+.alumno {
+  padding-top: 10px;
+}/*# sourceMappingURL=app.css.map */

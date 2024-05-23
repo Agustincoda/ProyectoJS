@@ -1,32 +1,3 @@
-// function cargaDeAlumnos(cantidadAlumnos) {
-//     for (let i = 0; i < cantidadAlumnos; i++) {
-//         let nombreAlumno = prompt("Ingresa el nombre del alumno.");
-//         let examenesMate = parseInt(prompt("Cuantos examenes rindio de Matematicas?"));
-//         let examenesGeo = parseInt(prompt("Cuantos examenes rindio de Geografia?"));
-//         let examenesHisto = parseInt(prompt("Cuantos examenes rindio de Historia?"));
-        
-//         let notaMatematicas = [];
-//         let notaGeografia = [];
-//         let notaHistoria = [];
-        
-//         while (notaMatematicas.length < examenesMate) {
-//             let cargar = parseInt(prompt("Ingresa las notas de matematicas."));
-//             notaMatematicas.push(cargar);
-//         }
-        
-//         while (notaGeografia.length < examenesGeo) {
-//             let cargar = parseInt(prompt("Ingresa las notas de geografia."));
-//             notaGeografia.push(cargar);
-//         }
-        
-//         while (notaHistoria.length < examenesHisto) {
-//             let cargar = parseInt(prompt("Ingresa las notas de historia."));
-//             notaHistoria.push(cargar);
-//         }
-
-
-//     }
-// }
     class Alumno {
         constructor(nombre, notasMatematicas, notasGeografia, notasHistoria) {
             this.nombre = nombre;
@@ -38,7 +9,7 @@
         }
 
         promedioNotas(materia) {
-            const sumaNotas = this.notas[materia].reduce((acc, nota) => acc + nota, 0);
+            const sumaNotas = this.notas[materia];
             const promedio = sumaNotas / this.notas[materia].length;
             return promedio;
         }
@@ -64,7 +35,7 @@
         const listaAlumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos"));
         if (listaAlumnos) {
             const contenedor = document.getElementById("listaAlumnos");
-            contenedor.innerHTML = ""; // Limpiar contenido previo
+            contenedor.innerHTML = ""; 
             listaAlumnos.forEach(alumno => {
                 const div = document.createElement("div");
                 div.className = "alumno";
@@ -72,15 +43,14 @@
                 const nombre = document.createElement("h2");
                 nombre.innerText = `Nombre: ${alumno.nombre}`;
                 nombre.className = "nombreAlumno";
-
                 const notaMatematicas = document.createElement("p");
-                notaMatematicas.innerText = `Nota de Matemáticas: ${alumno.notas.matematicas.join(", ")}`;
+                notaMatematicas.innerText = `Nota de Matemáticas: ${alumno.notas.matematicas}`;
 
                 const notaGeografia = document.createElement("p");
-                notaGeografia.innerText = `Nota de Geografía: ${alumno.notas.geografia.join(", ")}`;
+                notaGeografia.innerText = `Nota de Geografía: ${alumno.notas.geografia}`;
 
                 const notaHistoria = document.createElement("p");
-                notaHistoria.innerText = `Nota de Historia: ${alumno.notas.historia.join(", ")}`;
+                notaHistoria.innerText = `Nota de Historia: ${alumno.notas.historia}`;
 
                 div.appendChild(nombre);
                 div.appendChild(notaMatematicas);
@@ -89,10 +59,11 @@
 
                 contenedor.appendChild(div);
             });
-        } else {
-            console.log("No hay alumnos en memoria.");
-        }
+        } 
     }
+    // Para entrega final: Hacer que si no hay una lista cargada, avise por html.
+    
+
 
     function eliminarInputs() {
         document.getElementById("inputNom").value = "";
@@ -132,10 +103,12 @@
             if (todosAprobados) {
                 const resultadoAprobado = document.createElement("p");
                 resultadoAprobado.innerText = "¡Todos los alumnos aprobaron!";
+                resultadoAprobado.style.color = "green";
                 contenedor.appendChild(resultadoAprobado);
             } else {
                 const resultadoDesaprobado = document.createElement("p");
                 resultadoDesaprobado.innerText = "Lamentablemente uno o más alumnos desaprobaron";
+                resultadoDesaprobado.style.color = "red";
                 contenedor.appendChild(resultadoDesaprobado);
             }
 
@@ -152,9 +125,8 @@
     const botonEliminarLista = document.getElementById("botElimLista");
     const botonRevisarNotas = document.getElementById("botAprob");
 
-    botonCargarAlumnos.addEventListener("click", (event) => {
-        event.preventDefault();
 
+    botonCargarAlumnos.addEventListener("click", () => {
         const nombreAlumno = document.getElementById("inputNom").value;
         const notaMatematicas = [parseInt(document.getElementById("NotaMat").value)];
         const notaGeografia = [parseInt(document.getElementById("NotaGeo").value)];
@@ -166,9 +138,19 @@
         eliminarInputs();
     });
 
-    botonMostrarAlumnos.addEventListener("click", mostrarDeMemoria);
+    botonMostrarAlumnos.addEventListener("click", ()=>{
+        const listaAlumnos = document.getElementById("listaAlumnos");
+   
+        if (listaAlumnos.innerHTML === '') {
+            mostrarDeMemoria();
+            botonMostrarAlumnos.innerText = "Ocultar Lista";
+        } else {
+            listaAlumnos.innerHTML = '';
+            botonMostrarAlumnos.innerText = "Mostrar Lista";
+        }
+    });
     botonEliminarLista.addEventListener("click", quitarLista);
     botonRevisarNotas.addEventListener("click", mostrarResultado);
-
+    
 
 
