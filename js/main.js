@@ -1,4 +1,6 @@
-    class Alumno {
+
+  
+class Alumno {
         constructor(nombre, notasMatematicas, notasGeografia, notasHistoria) {
             this.nombre = nombre;
             this.notas = {
@@ -59,7 +61,7 @@
 
                 contenedor.appendChild(div);
             });
-        } 
+        }
     }
     // Para entrega final: Hacer que si no hay una lista cargada, avise por html.
     
@@ -82,7 +84,7 @@
             contenedor.innerHTML = "";
             alumnos = []; 
         } else {
-            alert("No hay nada cargado, revisa que hayas ingresado un alumno al menos");
+            alert("nada para mostrar");
         }
         const resultado = document.getElementById("resultadoRevision");
         if (resultado) {
@@ -154,3 +156,6 @@
     
 
 
+    
+
+   
