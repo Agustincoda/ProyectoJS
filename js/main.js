@@ -32,8 +32,21 @@ function guardarEnMemoria(alumnos) {
     const alumnosJSON = JSON.stringify(alumnos);
     sessionStorage.setItem("arrayAlumnos", alumnosJSON);
 }
+async function mensajeAviso() {
+    await fetch('fetch.json')
+        .then((response) => response.json())
+        .then((data) => {
+            const contenedor = document.getElementById("listaAlumnos");
+            contenedor.innerHTML = "";
+            const mensaje = document.createElement("h2");
+            mensaje.innerText = data;
+            contenedor.appendChild(mensaje);
+        })
 
-function mostrarDeMemoria() {
+        .catch((error)=>console.error(error));
+}
+
+async function mostrarDeMemoria() {
     const listaAlumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos"));
     if (listaAlumnos) {
         const contenedor = document.getElementById("listaAlumnos");
@@ -62,19 +75,7 @@ function mostrarDeMemoria() {
             contenedor.appendChild(div);
         });
     } else {
-        async function mensaje() {
-            await fetch('fetch.json')
-                .then((response) => response.json())
-                .then((data) => {
-                    const contenedor = document.getElementById("listaAlumnos");
-                    contenedor.innerHTML = "";
-                    const mensaje = document.createElement("h2");
-                    mensaje.innerText = data;
-                    contenedor.appendChild(mensaje);
-                })
-
-                .catch((error)=>console.error(error));
-        }
+      await mensajeAviso();
     }
 }
 // Para entrega final: Hacer que si no hay una lista cargada, avise por html.
