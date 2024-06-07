@@ -4,7 +4,8 @@
 }
 
 body {
-  background-color: black;
+  background-color: #62613a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%2392aca3' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
   padding: 5px;
 }
 
@@ -12,21 +13,21 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: red;
+  color: #FBFFF1;
 }
 
 h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: #FBFFF1;
 }
 
 p {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
 }
 
 #formYBotones {
@@ -74,8 +75,8 @@ button {
   margin: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  background-color: #007bff;
-  color: white;
+  background-color: #004777;
+  color: #FBFFF1;
   cursor: pointer;
   height: 50px;
   width: 150px;
@@ -91,8 +92,8 @@ button {
 #mostrarResultado {
   flex-direction: column;
   padding: 30px;
-  background-color: lightblue;
-  border: 1px solid #ccc;
+  background-color: #4E8098;
+  border: none;
   border-radius: 5px;
   margin-left: 20px;
 }
@@ -105,7 +106,7 @@ button {
 }
 
 .nombreAlumno {
-  color: red;
+  color: #C33C54;
   padding-bottom: 5px;
 }
 
