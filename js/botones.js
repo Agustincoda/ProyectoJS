@@ -1,5 +1,9 @@
-function iniciarBotones() {
+import { Alumno } from "./clases.js";
 
+let alumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos")) || [];
+
+export function iniciarBotones() {
+    
     function guardarEnMemoria(alumnos) {
         const alumnosJSON = JSON.stringify(alumnos);
         sessionStorage.setItem("arrayAlumnos", alumnosJSON);
@@ -26,10 +30,12 @@ function iniciarBotones() {
         document.getElementById("NotaGeo").value = "";
         document.getElementById("NotaHis").value = "";
     }
+        const botonCargarAlumnos= document.getElementById("botCarga");
+        const botonMostrarAlumnos= document.getElementById("botMostrar");
+        const botonEliminarLista=document.getElementById("botElimLista");
+        const botonAprobado=document.getElementById("botAprob")
 
-
-
-    document.getElementById("botCarga").addEventListener("click", () => {
+    botonCargarAlumnos.addEventListener("click", () => {
         const nombreAlumno = document.getElementById("inputNom").value;
         const notaMatematicas = [parseInt(document.getElementById("NotaMat").value)];
         const notaGeografia = [parseInt(document.getElementById("NotaGeo").value)];
@@ -41,11 +47,11 @@ function iniciarBotones() {
         eliminarInputs();
     });
 
-    document.getElementById("botMostrar").addEventListener("click", () => {
+     botonMostrarAlumnos.addEventListener("click", () => {
         const listaAlumnos = document.getElementById("listaAlumnos");
 
         if (listaAlumnos.innerHTML === '') {
-            async function mostrarDeMemoria() {
+           
                 const listaAlumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos"));
                 if (listaAlumnos) {
                     const contenedor = document.getElementById("listaAlumnos");
@@ -74,12 +80,12 @@ function iniciarBotones() {
                         contenedor.appendChild(div);
                     });
                 } else {
-                    await mensajeAviso();
+                    mensajeAviso();
                 }
-            }
             botonMostrarAlumnos.innerText = "Ocultar Lista";
         } else {
             listaAlumnos.innerHTML = '';
+            listaAlumnos.innerText = '';
             botonMostrarAlumnos.innerText = "Mostrar Lista";
         }
     });
@@ -87,8 +93,7 @@ function iniciarBotones() {
 
 
 
-    document.getElementById("botElimLista").addEventListener("click", () => {
-        function quitarLista() {
+    botonEliminarLista.addEventListener("click", () => {
             const listaAlumnos = sessionStorage.getItem("arrayAlumnos");
             if (listaAlumnos) {
                 sessionStorage.removeItem("arrayAlumnos");
@@ -114,12 +119,11 @@ function iniciarBotones() {
                 resultado.innerHTML = "";
             }
         }
-    });
+    );
 
+    
 
-
-    document.getElementById("botAprob").addEventListener("click", () => {
-        function mostrarResultado() {
+    botonAprobado.addEventListener("click", () => {
             const listaAlumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos"));
             if (listaAlumnos) {
                 const contenedor = document.getElementById("resultadoRevision");
@@ -148,8 +152,7 @@ function iniciarBotones() {
                 }
             }
         }
-    });
+    );
 
 }
 
-module.exports = iniciarBotones

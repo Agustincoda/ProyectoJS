@@ -1,4 +1,4 @@
-class Alumno {
+export class Alumno {
     constructor(nombre, notasMatematicas, notasGeografia, notasHistoria) {
         this.nombre = nombre;
         this.notas = {
@@ -24,4 +24,3 @@ class Alumno {
     }
 }
 
-module.exports = Alumno

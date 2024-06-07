@@ -1,11 +1,13 @@
 
-const claseAlumno = require("./clases")
 
 
-let alumnos = JSON.parse(sessionStorage.getItem("arrayAlumnos")) || [];
+
+import { iniciarBotones } from "./botones.js";
+
+iniciarBotones()
 
 
-const iniciar = require("./botones")
+
 
 
 
