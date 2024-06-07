@@ -85,7 +85,6 @@ export function iniciarBotones() {
             botonMostrarAlumnos.innerText = "Ocultar Lista";
         } else {
             listaAlumnos.innerHTML = '';
-            listaAlumnos.innerText = '';
             botonMostrarAlumnos.innerText = "Mostrar Lista";
         }
     });
@@ -138,11 +137,13 @@ export function iniciarBotones() {
                     resultadoAprobado.innerText = "¡Todos los alumnos aprobaron!";
                     resultadoAprobado.style.color = "#26C485";
                     contenedor.appendChild(resultadoAprobado);
+                    setTimeout(()=>{contenedor.removeChild(resultadoAprobado)},5000)
                 } else {
                     const resultadoDesaprobado = document.createElement("p");
                     resultadoDesaprobado.innerText = "Lamentablemente uno o más alumnos desaprobaron";
                     resultadoDesaprobado.style.color = "#C33C54";
                     contenedor.appendChild(resultadoDesaprobado);
+                    setTimeout(()=>{contenedor.removeChild(resultadoDesaprobado)},4000)
                 }
 
                 if (todosAprobados == null) {
